@@ -58,10 +58,10 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 493879db0b4808b46be20f3a52f4cb8a, type: 2}
-  startingMovingChance: 0.02
   movingChance:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 64149d90e13f6c54f9db8e2654010398, type: 2}
+  startingMovingChance: 0.02
   maxMovingChance: 0.6
   _playerController: {fileID: 0}

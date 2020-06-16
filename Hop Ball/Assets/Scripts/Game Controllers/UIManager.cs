@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
     
     [SerializeField] private Canvas startGameUI;
+    [SerializeField] private Canvas shopUI;
     [SerializeField] private Canvas gameplayUI;
     [SerializeField] private Canvas endGameUI;
     [SerializeField] private TextMeshProUGUI newHighScoreText;
@@ -21,13 +22,24 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
         }
-        
-        ShowStartGameUI();
     }
 
-    private void ShowStartGameUI()
+    public void ShowStartGameUI()
     {
         startGameUI.gameObject.SetActive(true);
+
+        if (shopUI.gameObject.activeInHierarchy)
+        {
+            GameManager.Instance.gameObject.SetActive(true);
+            shopUI.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowShopUI()
+    {
+        GameManager.Instance.gameObject.SetActive(false);
+        startGameUI.gameObject.SetActive(false);
+        shopUI.gameObject.SetActive(true);
     }
 
     public void ShowGameplayUI()
@@ -47,6 +59,7 @@ public class UIManager : MonoBehaviour
     
     public void RestartLevel()
     {
+        ShowStartGameUI();
         SceneManager.LoadScene(0);
     }
 }

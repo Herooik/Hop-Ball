@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6396da96b8461947b841c1c172f048b, type: 3}
   m_Name: PickUps
   m_EditorClassIdentifier: 
-  Value: 13
+  Value: 324

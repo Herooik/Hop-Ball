@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f18261337aba9b47810bc3daf4ff7b9, type: 3}
+  m_Name: Ball 1
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 529069c9a5785dc49b7cd113cbd5b744, type: 2}
+  price: 50
+  isBought: 0

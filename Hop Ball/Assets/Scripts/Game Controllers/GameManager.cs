@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -18,14 +19,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private IntReference pickUps;
     
     [Header("Moving Chance")]
-    [SerializeField][Range(0,1)] private float startingMovingChance = 0.05f;
     [SerializeField] private FloatReference movingChance;
+    [SerializeField][Range(0,1)] private float startingMovingChance = 0.05f;
     [SerializeField][Range(0,1)] private float maxMovingChance = 0.6f;
 
     [SerializeField] private PlayerController _playerController;
 
     private bool _isGameStarted;
     private bool _isMovingChanceIncreased;
+
+    public int IsFirst;
 
     private void Awake()
     {
@@ -41,17 +44,45 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (TouchToStartGame()) return;
+        
+        RefreshPlayerValues();
+        
+        CheckForMovingChance();
+    }
+
+    private bool TouchToStartGame()
+    {
         if (Input.GetMouseButtonDown(0) && !_isGameStarted)
         {
+            //if (EventSystem.current.IsPointerOverGameObject()) return true;
+            
+            if(EventSystem.current.IsPointerOverGameObject())
+                return true;
+             
+            //check touch
+            if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began )
+            {
+                if(EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
+                    return true;
+            }
+            
             UIManager.Instance.ShowGameplayUI();
             _isGameStarted = true;
             _playerController.enabled = true;
         }
-        
+
+        return false;
+    }
+
+    public void RefreshPlayerValues()
+    {
         scoreText.text = score.Value.ToString();
         coinsText.text = pickUps.Value.ToString();
+    }
 
-        
+    private void CheckForMovingChance()
+    {
         if (score.Value % 10 == 0 && score.Value != 0 && !_isMovingChanceIncreased && movingChance.Value <= maxMovingChance)
         {
             _isMovingChanceIncreased = true;

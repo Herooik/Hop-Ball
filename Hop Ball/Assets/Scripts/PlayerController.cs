@@ -35,11 +35,8 @@ public class PlayerController : MonoBehaviour
         _time = Time.time - _startTime;
         
         Moving();
-
-        if (moveSpeed <= maxSpeed)
-        {
-            IncreaseSpeed();
-        }
+        
+        IncreaseSpeed();
     }
 
     private void Moving()
@@ -61,10 +58,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-       // _horizontalMove = Input.GetAxis("Horizontal") * Time.deltaTime * horizontalSpeed;
-       // 
-       // _newPosX = _horizontalMove + transform.position.x;
-
         _newPosY = Mathf.Abs(Mathf.Sin(_time * (moveSpeed / 2))) * jumpHeight;
         
         _newPosZ = _time * moveSpeed;
@@ -74,12 +67,10 @@ public class PlayerController : MonoBehaviour
     
     private void IncreaseSpeed()
     {
-        moveSpeed += speedGrowth;
-        horizontalSpeed += speedGrowth;
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log("Asd");
+        if (moveSpeed <= maxSpeed)
+        {
+            moveSpeed += speedGrowth;
+            horizontalSpeed += speedGrowth;
+        }
     }
 }

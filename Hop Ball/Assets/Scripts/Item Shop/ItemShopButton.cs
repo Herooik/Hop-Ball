@@ -10,6 +10,7 @@ public class ItemShopButton : MonoBehaviour
     [SerializeField] private BoughtItems boughtItems;
     [SerializeField] private Material playerMaterial;
     [SerializeField] private IntReference pickUp;
+    //[SerializeField] private ShopScrollList shopScrollList;
     [Header("This Button Reference")]
     [SerializeField] private Button thisButton;
     [SerializeField] private TextMeshProUGUI priceText;
@@ -55,7 +56,7 @@ public class ItemShopButton : MonoBehaviour
     private void ChangeColor()
     {
         playerMaterial.color = colorImage.color;
-        FindObjectOfType<ShopScrollList>().SetButtonsInteractable();
+        ShopScrollList.Instance.SetButtonsInteractable();
         thisButton.interactable = false;
     }
     
@@ -77,7 +78,7 @@ public class ItemShopButton : MonoBehaviour
 
         playerMaterial.color = colorImage.color;
         
-        FindObjectOfType<ShopScrollList>().SetButtonsInteractable();
+        ShopScrollList.Instance.SetButtonsInteractable();
         thisButton.interactable = false;
         
         thisButton.onClick.RemoveListener(TryToBuyItem);
@@ -91,6 +92,4 @@ public class ItemShopButton : MonoBehaviour
         pickUpImage.gameObject.SetActive(false);
         colorImage.gameObject.SetActive(true);
     }
-
-    
 }

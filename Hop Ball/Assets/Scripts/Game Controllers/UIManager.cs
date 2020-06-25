@@ -10,10 +10,10 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
     
-    [SerializeField] private Canvas startGameUI;
-    [SerializeField] private Canvas shopUI;
-    [SerializeField] private Canvas gameplayUI;
-    [SerializeField] private Canvas endGameUI;
+    [SerializeField] private Animator startGameAnim;
+    [SerializeField] private Animator shopAnim;
+    [SerializeField] private Animator gameplayAnim;
+    [SerializeField] private Canvas endGameCanvas;
     [SerializeField] private TextMeshProUGUI newHighScoreText;
 
     private void Awake()
@@ -26,26 +26,24 @@ public class UIManager : MonoBehaviour
 
     public void ShowStartGameUI()
     {
-        startGameUI.gameObject.SetActive(true);
+        startGameAnim.SetBool("isHidden", false);
 
-        if (shopUI.gameObject.activeInHierarchy)
-        {
-            GameManager.Instance.gameObject.SetActive(true);
-            shopUI.gameObject.SetActive(false);
-        }
+        GameManager.Instance.gameObject.SetActive(true);
+        shopAnim.SetBool("isHidden", true);
     }
 
     public void ShowShopUI()
     {
         GameManager.Instance.gameObject.SetActive(false);
-        startGameUI.gameObject.SetActive(false);
-        shopUI.gameObject.SetActive(true);
+        startGameAnim.SetBool("isHidden", true);
+        shopAnim.SetBool("showShop", true);
+        shopAnim.SetBool("isHidden", false);
     }
 
     public void ShowGameplayUI()
     {
-        startGameUI.gameObject.SetActive(false);
-        gameplayUI.gameObject.SetActive(true);
+        startGameAnim.SetBool("isHidden", true);
+        gameplayAnim.SetBool("isHidden", true);
     }
     
     public void ShowEndGameUI()
@@ -54,7 +52,7 @@ public class UIManager : MonoBehaviour
         {
             newHighScoreText.gameObject.SetActive(true);
         }
-        endGameUI.gameObject.SetActive(true);
+        endGameCanvas.gameObject.SetActive(true);
     }
     
     public void RestartLevel()

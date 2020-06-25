@@ -311,6 +311,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4105782611440756860}
     m_Modifications:
+    - target: {fileID: 2931949495651150590, guid: 6963acdb716f5cf4fb5b4005e6d327ef,
+        type: 3}
+      propertyPath: m_Name
+      value: Ball Colors Content
+      objectReference: {fileID: 0}
     - target: {fileID: 2931949495651150591, guid: 6963acdb716f5cf4fb5b4005e6d327ef,
         type: 3}
       propertyPath: m_SizeDelta.x

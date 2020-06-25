@@ -6,18 +6,31 @@ using UnityEngine.UI;
 
 public class ShopScrollList : MonoBehaviour
 {
+    public static ShopScrollList Instance { get; private set; }
     [SerializeField] private BoughtItems boughtItems;
-    
     [SerializeField] private List<ItemData> itemList;
     [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private Transform contentPanel;
 
     public List<Button> _buttons;
-    
+
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
         SpawnButtons();
+        Debug.Log(_buttons.Count);
     }
 
     private void SpawnButtons()
@@ -41,6 +54,7 @@ public class ShopScrollList : MonoBehaviour
 
     public void SetButtonsInteractable()
     {
+        Debug.Log(_buttons.Count);
         foreach (var button in _buttons)
         {
             button.interactable = true;

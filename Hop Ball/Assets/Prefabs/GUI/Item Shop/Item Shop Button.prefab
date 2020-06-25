@@ -140,6 +140,8 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 493879db0b4808b46be20f3a52f4cb8a, type: 2}
+  shopScrollList: {fileID: 8667006013809177735, guid: 8c8bd54ee5923e34588d31a19bb9267a,
+    type: 3}
   thisButton: {fileID: 468167807984321308}
   priceText: {fileID: 468167808141913442}
   pickUpImage: {fileID: 468167809819690357}

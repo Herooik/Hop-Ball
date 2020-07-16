@@ -10,11 +10,19 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
     
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private TextMeshProUGUI newHighScoreText;
+    [SerializeField] private TextMeshProUGUI pickUpText;
+    [SerializeField] private IntReference score;
+    [SerializeField] private IntReference highScore;
+    [SerializeField] private IntReference pickUps;
+    [Header("UI Animators")]
     [SerializeField] private Animator startGameAnim;
     [SerializeField] private Animator shopAnim;
     [SerializeField] private Animator gameplayAnim;
     [SerializeField] private Canvas endGameCanvas;
-    [SerializeField] private TextMeshProUGUI newHighScoreText;
+    
 
     private void Awake()
     {
@@ -22,7 +30,21 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
         }
+        
+        highScoreText.text = "BEST: " + highScore.Value;
     }
+
+    private void Update()
+    {
+        RefreshPlayerValues();
+    }
+
+    public void RefreshPlayerValues()
+    {
+        scoreText.text = score.Value.ToString();
+        pickUpText.text = pickUps.Value.ToString();
+    }
+
 
     public void ShowStartGameUI()
     {
@@ -43,7 +65,7 @@ public class UIManager : MonoBehaviour
     public void ShowGameplayUI()
     {
         startGameAnim.SetBool("isHidden", true);
-        gameplayAnim.SetBool("isHidden", true);
+        gameplayAnim.SetBool("isHidden", false);
     }
     
     public void ShowEndGameUI()

@@ -65,7 +65,7 @@ public class ItemShopButton : MonoBehaviour
         if (pickUp.Value >= _itemData.GetPrice())
         {
             pickUp.Value -= _itemData.GetPrice();
-            GameManager.Instance.RefreshPlayerValues();
+            UIManager.Instance.RefreshPlayerValues();
         }
         else
         {

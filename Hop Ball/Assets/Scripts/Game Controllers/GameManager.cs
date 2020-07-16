@@ -11,12 +11,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public bool IsHighScore { get; private set; }
     
-    [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI highScoreText;
-    [SerializeField] private TextMeshProUGUI coinsText;
+  //  [SerializeField] private TextMeshProUGUI scoreText;
+  //  [SerializeField] private TextMeshProUGUI highScoreText;
+  //  [SerializeField] private TextMeshProUGUI coinsText;
     [SerializeField] private IntReference score;
     [SerializeField] private IntReference highScore;
-    [SerializeField] private IntReference pickUps;
+   // [SerializeField] private IntReference pickUps;
     
     [Header("Moving Chance")]
     [SerializeField] private FloatReference movingChance;
@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
     private bool _isGameStarted;
     private bool _isMovingChanceIncreased;
 
-    public int IsFirst;
-
     private void Awake()
     {
         if (Instance == null)
@@ -37,7 +35,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
-        highScoreText.text = "BEST: " + highScore.Value;
+        //highScoreText.text = "BEST: " + highScore.Value;
         score.Value = 0;
         movingChance.Value = startingMovingChance;
     }
@@ -46,7 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (TouchToStartGame()) return;
         
-        RefreshPlayerValues();
+       // RefreshPlayerValues();
         
         CheckForMovingChance();
     }
@@ -55,12 +53,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !_isGameStarted)
         {
-            //if (EventSystem.current.IsPointerOverGameObject()) return true;
-            
             if(EventSystem.current.IsPointerOverGameObject())
                 return true;
              
-            //check touch
+            
             if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began )
             {
                 if(EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
@@ -75,11 +71,11 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    public void RefreshPlayerValues()
-    {
-        scoreText.text = score.Value.ToString();
-        coinsText.text = pickUps.Value.ToString();
-    }
+  //  public void RefreshPlayerValues()
+  //  {
+  //      scoreText.text = score.Value.ToString();
+  //      coinsText.text = pickUps.Value.ToString();
+  //  }
 
     private void CheckForMovingChance()
     {
